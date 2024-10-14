@@ -7,18 +7,18 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-// MyWorkflow is a Temporal workflow that uses the factory pattern to execute activities.
-func MyWorkflow(ctx workflow.Context, activityType activities.ActivityType, input interface{}) (string, error) {
-	factory := &activities.ActivityFactory{}
+func MyWorkflow(ctx workflow.Context, input interface{}) (string, error) {
+	var result string
+	var err error
 
-	// Create the desired activity
-	activity, err := factory.CreateActivity(activityType)
-	if err != nil {
-		return "", err
-	}
+	// Dynamically execute the correct activity based on type
+	factory = activities.ActivityFactory()
+	var emailActivityInstance = activities.ActivityFactory.CreateActivity(0)
+	var paymentActivityInstance = activities.ActivityFactory.CreateActivity(1)
 
-	// Execute the activity
-	result, err := workflow.ExecuteActivity(ctx, activity.Execute, input).Get(ctx, nil)
+	err = workflow.ExecuteActivity(ctx, activities.EmailActivityFunction, input).Get(ctx, &result)
+	err = workflow.ExecuteActivity(ctx, activities.PaymentActivityFunction, input).Get(ctx, &result)
+
 	if err != nil {
 		return "", err
 	}
