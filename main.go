@@ -2,8 +2,8 @@ package main
 
 import (
 	"log"
-	"workflows"
 
+	"github.com/GeetaAhuja2022/temporal-worker/workflows"
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
 )
