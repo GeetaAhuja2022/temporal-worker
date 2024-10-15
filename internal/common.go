@@ -1,9 +1,9 @@
 package internal
 
-type userInput struct {
+type UserInput struct {
 	to      string
 	subject string
 }
-type paymentInput struct {
+type PaymentInput struct {
 	amount string
 }
