@@ -5,26 +5,33 @@ import (
 	"fmt"
 )
 
+// PaymentActivity processes payments.
 type PaymentActivity struct{}
 
-// PaymentActivity represents processing a payment.
-
-// PaymentActivityFunction is the function to be registered in Temporal.
-func PaymentActivityFunction(ctx context.Context, input map[string]interface{}) (string, error) {
+// PaymentActivityFunction is the registered function in Temporal.
+func PaymentActivityFunction(ctx context.Context, input map[string]interface{}) (ActivityResult, error) {
 	activity := &PaymentActivity{}
 	result, err := activity.Execute(ctx, input)
 	if err != nil {
-		return "", err
+		return ActivityResult{Status: "error", Message: err.Error()}, err
 	}
-	return result.(string), nil
+	return result.(ActivityResult), nil
 }
 
-// Execute performs the actual payment processing.
+// Execute processes a payment and returns a standardized result.
 func (p *PaymentActivity) Execute(ctx context.Context, input interface{}) (interface{}, error) {
 	paymentData, ok := input.(map[string]interface{})
 	if !ok {
-		return nil, fmt.Errorf("invalid input type for PaymentActivity")
+		return ActivityResult{}, fmt.Errorf("invalid input type for PaymentActivity")
 	}
+
+	// Simulate payment processing
 	fmt.Printf("Processing payment of $%.2f\n", paymentData["amount"])
-	return "Payment Processed", nil
+
+	// Return a standardized response
+	return ActivityResult{
+		Status:  "success",
+		Message: "Payment Processed",
+		Data:    paymentData["amount"], // You can return additional data here
+	}, nil
 }
