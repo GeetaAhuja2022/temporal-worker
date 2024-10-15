@@ -4,6 +4,6 @@ type UserInput struct {
 	to      string
 	subject string
 }
-type paymentsInput struct {
+type paymentInput struct {
 	amount string
 }

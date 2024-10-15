@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"temporal-workflow/common"
 	"temporal-workflow/workflows"
 
 	"go.temporal.io/sdk/client"
@@ -23,13 +24,8 @@ func main() {
 	}
 
 	input := map[string]interface{}{
-		"emailData": {
-			"to":      "user@example.com",
-			"subject": "Welcome to Temporal",
-		},
-		"paymentData": {
-			"amount": "1000",
-		},
+		"emailData":   common.UserInput{"user@example.com", "Welcome to Temporal"},
+		"paymentData": common.paymentInput{"1000"},
 	}
 
 	we, err := c.ExecuteWorkflow(context.Background(), workflowOptions, workflows.MyWorkflow, input)
