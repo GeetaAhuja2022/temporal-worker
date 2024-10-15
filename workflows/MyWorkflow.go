@@ -7,32 +7,20 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-type emailInput struct {
-	to      string
-	subject string
-}
-type paymentlInput struct {
-	amount string
-}
-type workflowInput struct {
-	emailData   emailInput
-	paymentData paymentlInput
-}
-
 // MyWorkflow is a Temporal workflow that uses a factory to execute activities with a common return type.
-func MyWorkflow(ctx workflow.Context, input workflowInput) (string, error) {
+func MyWorkflow(ctx workflow.Context, input map[string]interface{}) (string, error) {
 	var result activities.ActivityResult
 	var err error
 
 	// Dynamically execute the correct activity based on type
 
-	err = workflow.ExecuteActivity(ctx, activities.EmailActivityFunction, input.emailData).Get(ctx, &result)
+	err = workflow.ExecuteActivity(ctx, activities.EmailActivityFunction, input["emailData"]).Get(ctx, &result)
 
 	if err != nil {
 		return "", err
 	}
 
-	err = workflow.ExecuteActivity(ctx, activities.PaymentActivityFunction, input.paymentData).Get(ctx, &result)
+	err = workflow.ExecuteActivity(ctx, activities.PaymentActivityFunction, input["paymentData"]).Get(ctx, &result)
 
 	if err != nil {
 		return "", err

@@ -22,16 +22,14 @@ func main() {
 		TaskQueue: "my-task-queue",
 	}
 
-	emailInput := map[string]string{
-		"to":      "user@example.com",
-		"subject": "Welcome to Temporal",
-	}
-	paymentInput := map[string]string{
-		"Amount": "1000",
-	}
-	input := map[string]map[string]string{
-		"emailData":   emailInput,
-		"paymentData": paymentInput,
+	input := map[string]interface{}{
+		"emailData": {
+			"to":      "user@example.com",
+			"subject": "Welcome to Temporal",
+		},
+		"paymentData": {
+			"amount": "1000",
+		},
 	}
 
 	we, err := c.ExecuteWorkflow(context.Background(), workflowOptions, workflows.MyWorkflow, input)
