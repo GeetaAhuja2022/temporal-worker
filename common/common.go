@@ -1,4 +1,4 @@
-package internal
+package common
 
 type UserInput struct {
 	To      string
