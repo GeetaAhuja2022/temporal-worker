@@ -14,11 +14,6 @@ const (
 	paymentActivity
 )
 
-var activityTypes = map[activityType]string{
-	emailActivity:   "EmailActivity",
-	paymentActivity: "PaymentActivity",
-}
-
 // ActivityFactory is responsible for creating activities.
 type ActivityFactory struct{}
 
