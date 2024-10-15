@@ -1,6 +1,6 @@
 package common
 
-type UserInput struct {
+type userInput struct {
 	to      string
 	subject string
 }
