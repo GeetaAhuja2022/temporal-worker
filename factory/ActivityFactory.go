@@ -7,14 +7,14 @@ import (
 )
 
 // ActivityType defines the type of activity
-type activityIType int
+type activityType int
 
 const (
-	emailActivity activityIType = iota
+	emailActivity activityType = iota
 	paymentActivity
 )
 
-var activityTypes = map[activityIType]string{
+var activityTypes = map[activityType]string{
 	emailActivity:   "EmailActivity",
 	paymentActivity: "PaymentActivity",
 }
@@ -23,13 +23,13 @@ var activityTypes = map[activityIType]string{
 type ActivityFactory struct{}
 
 // CreateActivity creates an activity instance based on the activity type.
-func (af *ActivityFactory) CreateActivity(aType activityIType) (any, error) {
+func (af *ActivityFactory) CreateActivity(aType activityType) (any, error) {
 	switch aType {
 	case emailActivity:
 		return activities.EmailActivityFunction, nil
 	case paymentActivity:
 		return activities.PaymentActivityFunction, nil
 	default:
-		return nil, fmt.Errorf("unknown activity type: %s", aType)
+		return nil, fmt.Errorf("unknown activity type: %v", aType)
 	}
 }
