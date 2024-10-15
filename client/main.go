@@ -23,10 +23,16 @@ func main() {
 		TaskQueue: "my-task-queue",
 	}
 
-	input := map[string]interface{}{
-		"emailData":   common.UserInput{"user@example.com", "Welcome to Temporal"},
-		"paymentData": common.paymentInput{"1000"},
+	input := make(map[string]interface{})
+	userData := common.UserInput{
+		to:      "geeta.ahuja@capitalone.com",
+		subject: "My Subject",
 	}
+	input["userData"] = userData
+	paymentData := common.UserInput{
+		amount: "10000",
+	}
+	input["paymentData"] = paymentData
 
 	we, err := c.ExecuteWorkflow(context.Background(), workflowOptions, workflows.MyWorkflow, input)
 	if err != nil {
