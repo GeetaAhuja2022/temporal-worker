@@ -1,9 +1,9 @@
 package internal
 
 type UserInput struct {
-	to      string
-	subject string
+	To      string
+	Subject string
 }
 type PaymentInput struct {
-	amount string
+	Amount string
 }
