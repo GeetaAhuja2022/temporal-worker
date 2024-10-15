@@ -1,4 +1,4 @@
-module temporal-workflow
+module github.com/GeetaAhuja2022/temporal-worker
 
 go 1.23.2
 

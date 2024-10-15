@@ -2,7 +2,8 @@ package workflows
 
 import (
 	"fmt"
-	"temporal-workflow/activities"
+
+	"github.com/GeetaAhuja2022/temporal-worker/activities"
 
 	"go.temporal.io/sdk/workflow"
 )

@@ -3,8 +3,9 @@ package client
 import (
 	"context"
 	"log"
-	"temporal-workflow/internal"
-	"temporal-workflow/workflows"
+
+	"github.com/GeetaAhuja2022/temporal-worker/internal"
+	"github.com/GeetaAhuja2022/temporal-worker/workflows"
 
 	"go.temporal.io/sdk/client"
 )

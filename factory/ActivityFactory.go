@@ -2,7 +2,8 @@ package factory
 
 import (
 	"fmt"
-	"temporal-workflow/activities"
+
+	"github.com/GeetaAhuja2022/temporal-worker/activities"
 )
 
 // ActivityType defines the type of activity
