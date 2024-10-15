@@ -1,4 +1,4 @@
-package main
+package client
 
 import (
 	"context"
@@ -23,12 +23,12 @@ func main() {
 	}
 
 	input := make(map[string]interface{})
-	userData := common.userInput{
+	userData := internal.userInput{
 		to:      "geeta.ahuja@capitalone.com",
 		subject: "My Subject",
 	}
 	input["userData"] = userData
-	paymentData := common.paymentInput{
+	paymentData := internal.paymentInput{
 		amount: "10000",
 	}
 	input["paymentData"] = paymentData
