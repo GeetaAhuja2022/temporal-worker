@@ -25,7 +25,7 @@ func (e *EmailActivity) Execute(ctx context.Context, input interface{}) (interfa
 		return ActivityResult{}, fmt.Errorf("invalid input type for EmailActivity")
 	}
 	// Simulate sending an email
-	fmt.Printf("Sending email to %s with subject: %s\n", emailData["to"], emailData["subject"])
+	fmt.Printf("Sending email to %s with subject: %s\n", emailData["To"], emailData["Subject"])
 
 	// Return a standardized response
 	return ActivityResult{

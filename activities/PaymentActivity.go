@@ -26,7 +26,7 @@ func (p *PaymentActivity) Execute(ctx context.Context, input interface{}) (inter
 	}
 
 	// Simulate payment processing
-	fmt.Printf("Processing payment of $%.2f\n", paymentData["amount"])
+	fmt.Printf("Processing payment of $%.2f\n", paymentData["Amount"])
 
 	// Return a standardized response
 	return ActivityResult{
